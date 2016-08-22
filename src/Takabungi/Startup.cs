@@ -29,6 +29,7 @@ namespace Takabungi
     // This method gets called by the runtime. Use this method to add services to the container.
     public void ConfigureServices(IServiceCollection services)
     {
+      services.AddOptions();
       services.Configure<AppSettings>(Configuration.GetSection("AppSettings"));
 
       // Add framework services.
@@ -62,7 +63,7 @@ namespace Takabungi
         ReturnUrlParameter = "ReturnUrl",
         AutomaticAuthenticate = true,
         AutomaticChallenge = true,
-        SlidingExpiration= true
+        SlidingExpiration = true
       });
 
       app.UseMvc(routes =>
