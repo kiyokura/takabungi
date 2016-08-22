@@ -1,0 +1,38 @@
+﻿@model Takabungi.Models.ViewModels.FileDetailViewModel
+@{
+  ViewBag.Title = "File Detail";
+}
+<h2>@ViewBag.Title</h2>
+<div>
+  <table class="table">
+    <tr>
+      <th style="width:100px">Environment</th>
+      <td><a asp-action="LogFiles" asp-route-envid="@Model.Environment.EnvID">@Model.Environment.Name</a></td>
+    </tr>
+    <tr>
+      <th>File Name</th>
+      <td>@Model.FileInfo.Name </td>
+    </tr>
+    <tr>
+      <th>Size (bytes)</th>
+      <td>@string.Format("{0:#,0} Bytes", Model.FileInfo.Size) </td>
+    </tr>
+    <tr>
+      <th>Created</th>
+      <td>@Model.FileInfo.CreatedDate </td>
+    </tr>
+    <tr>
+      <th>Updated</th>
+      <td>@Model.FileInfo.UpdatedDate </td>
+    </tr>
+  </table>
+  <hr />
+  <div>
+    <h3>File Content</h3>
+    <a href="#tail">Jump To End</a>
+    <pre>
+@Model.FileContent
+    </pre>
+    <a name="tail"></a>
+  </div>
+</div>

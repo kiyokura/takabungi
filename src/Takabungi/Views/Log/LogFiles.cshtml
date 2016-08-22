@@ -1,0 +1,35 @@
+﻿@model Takabungi.Models.ViewModels.LogFilesViewModel
+@{
+  ViewBag.Title = "Log Files";
+}
+<h2>@ViewBag.Title</h2>
+<table class="table">
+  <tr>
+    <th style="width:80px">Environment</th>
+    <td>@Model.Environment.Name</td>
+  </tr>
+  <tr>
+    <th>Notes</th>
+    <td>@Model.Environment.Notes </td>
+  </tr>
+</table>
+<hr />
+<table class="table">
+  <tr>
+    <th>File Name</th>
+    <th style="width:100px;">Size（bytes）</th>
+    <th style="width:200px;">Created</th>
+    <th style="width:200px;">Updated</th>
+  </tr>
+
+  @foreach (var item in Model.Files.OrderByDescending(x => x.Name))
+  {
+    <tr>
+      <td><a asp-action="FileDetail" asp-route-envid="@Model.Environment.EnvID" asp-route-filename="@item.Name">@item.Name</a></td>
+      <td style="text-align:right">@string.Format("{0:#,0}", item.Size) </td>
+      <td>@item.CreatedDate</td>
+      <td>@item.UpdatedDate</td>
+    </tr>
+  }
+
+</table>

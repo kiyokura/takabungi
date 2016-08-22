@@ -1,0 +1,30 @@
+﻿@model Takabungi.Models.ViewModels.EnvironmentsViewModel
+@{
+  ViewBag.Title = "Environments";
+}
+<h2>@ViewBag.Title</h2>
+<table class="table">
+  <thead>
+    <tr>
+      <th>
+        Environment Name
+      </th>
+      <th>
+        Notes
+      </th>
+    </tr>
+  </thead>
+  <tbody>
+    @foreach (var item in Model.Environments)
+    {
+      <tr>
+        <td>
+          <a asp-action="LogFiles" asp-route-envid="@item.EnvID">@Html.DisplayFor(modelItem => item.Name)</a>
+        </td>
+        <td>
+          @Html.DisplayFor(modelItem => item.Notes)
+        </td>
+      </tr>
+    }
+  </tbody>
+</table>
